@@ -1,0 +1,11 @@
+http://api.map.baidu.com/geocoder/v2/?ak=G2RfzVTGAhRSKirroplcNEbH0nw5GlGs&address=仁文公寓&mcode=com.lux.OldDriver&output=json&city=上海市
+
+http://api.map.baidu.com/place/v2/search?q=仁文公寓&region=北京&output=json&ak=G2RfzVTGAhRSKirroplcNEbH0nw5GlGs&mcode=com.lux.OldDriver&output=json&scope=2&q=上海
+
+
+名字查经纬度
+例子：https://api.map.baidu.com/place/v2/suggestion?query=仁文公寓&region=上海市&city_limit=true&output=json&ak=G2RfzVTGAhRSKirroplcNEbH0nw5GlGs&mcode=com.lux.OldDriver
+接口文档：http://lbsyun.baidu.com/index.php?title=webapi/place-suggestion-api
+
+搜索
+http://api.map.baidu.com/place/v2/search?query=银行&page_size=10&page_num=0&scope=1&region=上海&output=json&ak=G2RfzVTGAhRSKirroplcNEbH0nw5GlGs&mcode=com.lux.OldDriver
