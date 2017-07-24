@@ -9,7 +9,20 @@ import {
   
 } from 'react-native';
 
-import BaiduMap from './map/baidumapDemo'
+import BaiduMap from './map/baidumapDemo';
+import InfoPanel from './compnent/infoPanel';
+
+import {
+  StackNavigator,
+} from 'react-navigation';
+
+const BasicApp = StackNavigator({
+  Main: {screen: BaiduMap},
+  Profile: {screen: InfoPanel},
+}, {
+  headerMode:'screen'
+
+});
 
 export default class App extends Component{
     constructor(){
@@ -19,15 +32,19 @@ export default class App extends Component{
     render(){
         return(
             <View style={styles.container}>
+              {/*
                 <StatusBar hidden={false} 
                 animated={true}
                 style = {{flex:1}}
                 ></StatusBar>
 
                 <View style={styles.status}/>
+                */
+              }
+                
 
                 
-                <BaiduMap></BaiduMap>
+                <BasicApp></BasicApp>
             </View>
             );
     }

@@ -6,7 +6,9 @@ import React, {
 import {
   MapView,
   MapTypes,
-  Geolocation
+  Geolocation,
+  Icon,
+  NavigationItem
 } from 'react-native-baidu-map';
 
 import {
@@ -24,7 +26,36 @@ import SearchInput from '../compnent/searchText';
 import Dimensions from 'Dimensions';
 import HttpLoader from '../net/HttpLoader';
 
+class NavBar extends Component{
+  render(){
+    return(
+      <View>
+        <Text>Test</Text>
+      </View>
+    )
+  }
+}
+
 export default class BaiduMapDemo extends Component {
+
+  static navigationOptions = ({ navigation }) => (
+      {
+        headerTitle: 'wei',
+        headerTintColor: "#fff",   
+        headerStyle: { backgroundColor: '#ccc', height:  64},
+         headerLeft:(
+           <Text style={{left:10, color:'#0000ff'}}
+            onPress={() =>{
+              // navigation.state.params.navigatePress(navigation)
+              navigation.navigate('Profile', { name: 'Profile' })
+            }
+          }
+          >
+          登陆
+          </Text>
+        )   
+      }
+    );
 
   constructor() {
     super();
@@ -48,14 +79,20 @@ export default class BaiduMapDemo extends Component {
         title: ""
       }]
     };
+
+    this.clickFinishButton = this.clickFinishButton.bind(this);
   }
 
   componentDidMount() {
     this._getCurrentPosition();
+    // this.props.navigation.setParams({navigatePress:this.clickFinishButton})
+  }
+
+  clickFinishButton(navigation) {
+      navigation.navigate('Profile', { name: 'Profile' });
   }
   
   _search(txt){
-              alert(txt);
               var url = 'https://api.map.baidu.com/place/v2/suggestion?query='+ txt +'&region=上海市&city_limit=true&output=json&ak=G2RfzVTGAhRSKirroplcNEbH0nw5GlGs&mcode=com.lux.OldDriver';
               HttpLoader.load(url
                 ,(data)=>{
@@ -107,10 +144,11 @@ export default class BaiduMapDemo extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
 
-
+         
         <View style={{zIndex:100}}>
            <SearchInput searchFun = {(t)=> {this._search(t)}}/>
         </View>
@@ -205,7 +243,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height-150,
+    height: Dimensions.get('window').height-200,
   },
   textInput:{
     height: 40, 
